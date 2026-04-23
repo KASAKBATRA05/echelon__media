@@ -1,37 +1,94 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Link } from "wouter";
+import bgLeft from "@assets/Screenshot 2026-04-23 121810.png";
+import bgRight from "@assets/Screenshot 2026-04-23 121858.png";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const leftImgRef = useRef<HTMLDivElement>(null);
+  const rightImgRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current) {
-      gsap.to(containerRef.current, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-        opacity: 0,
-        scale: 0.95,
-        ease: "none",
-      });
-    }
+    const ctx = gsap.context(() => {
+      if (leftImgRef.current) {
+        gsap.fromTo(
+          leftImgRef.current,
+          { scale: 1.15, x: -20 },
+          { scale: 1.25, x: 20, duration: 18, ease: "sine.inOut", yoyo: true, repeat: -1 },
+        );
+      }
+      if (rightImgRef.current) {
+        gsap.fromTo(
+          rightImgRef.current,
+          { scale: 1.2, x: 20 },
+          { scale: 1.1, x: -20, duration: 22, ease: "sine.inOut", yoyo: true, repeat: -1 },
+        );
+      }
+      if (textRef.current) {
+        gsap.from(textRef.current.children, {
+          y: 40,
+          opacity: 0,
+          duration: 1.1,
+          stagger: 0.12,
+          ease: "power3.out",
+          delay: 0.2,
+        });
+      }
+      if (containerRef.current) {
+        gsap.to(containerRef.current, {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+          opacity: 0,
+          scale: 0.95,
+          ease: "none",
+        });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 40%, var(--offwhite) 0%, var(--cream) 70%)",
-      }}
+      className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden bg-[var(--cream)]"
     >
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
+      {/* Background photo collage */}
+      <div className="absolute inset-0 grid grid-cols-2 pointer-events-none">
+        <div
+          ref={leftImgRef}
+          className="relative w-full h-full bg-cover bg-center will-change-transform"
+          style={{ backgroundImage: `url(${bgLeft})` }}
+        />
+        <div
+          ref={rightImgRef}
+          className="relative w-full h-full bg-cover bg-center will-change-transform"
+          style={{ backgroundImage: `url(${bgRight})` }}
+        />
+      </div>
+
+      {/* Purple wash to push images toward palette + tame contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none mix-blend-multiply"
+        style={{ backgroundColor: "var(--purple)", opacity: 0.7 }}
+      />
+      {/* Cream radial highlight behind text so text reads clearly */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 50%, rgba(250,243,224,0.92) 0%, rgba(250,243,224,0.78) 35%, rgba(250,243,224,0.35) 65%, rgba(250,243,224,0) 100%)",
+        }}
+      />
+
+      {/* Subtle noise */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -54,7 +111,7 @@ export default function Hero() {
           <div>resonates.</div>
         </h1>
 
-        <p className="font-sans text-[16px] text-[var(--purple)] opacity-60 mb-10 max-w-lg">
+        <p className="font-sans text-[16px] text-[var(--purple)] opacity-70 mb-10 max-w-lg">
           If you want your audience to be your customer — you are in the right place.
         </p>
 
@@ -62,14 +119,14 @@ export default function Hero() {
           <Link href="/portfolio" className="bg-[var(--purple)] text-[var(--amber)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center gap-2 hover:bg-[var(--amber)] hover:text-[var(--purple)] hover:-translate-y-[3px] transition-all duration-250">
             Explore Our Work <span>→</span>
           </Link>
-          <a href="#contact" className="border-2 border-[var(--purple)] text-[var(--purple)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center justify-center hover:border-[var(--amber)] hover:text-[var(--amber)] transition-colors">
+          <a href="#contact" className="border-2 border-[var(--purple)] text-[var(--purple)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center justify-center hover:border-[var(--amber)] hover:text-[var(--amber)] transition-colors bg-[rgba(250,243,224,0.4)] backdrop-blur-sm">
             Let's Talk
           </a>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <span className="font-sans text-[10px] tracking-[0.3em] text-[var(--purple)] opacity-50">SCROLL</span>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
+        <span className="font-sans text-[10px] tracking-[0.3em] text-[var(--purple)] opacity-60">SCROLL</span>
         <div className="w-[2px] h-[40px] bg-transparent relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-[var(--amber)] origin-top animate-[scrollLine_1.5s_ease-in-out_infinite]" />
         </div>
