@@ -97,7 +97,7 @@ export default function Hero() {
       </div>
 
       <div ref={textRef} className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
-        <div className="font-sans font-medium text-[11px] tracking-[0.2em] text-[var(--amber)] mb-8">
+        <div className="font-sans font-bold text-[clamp(12px,1.6vw,16px)] tracking-[0.28em] text-[var(--purple)] mb-7 px-4 py-2 rounded-full border border-[rgba(47,27,95,0.2)] bg-[rgba(250,243,224,0.88)] shadow-[0_10px_28px_rgba(47,27,95,0.18)]">
           MEDIA AND MARKETING COMPANY
         </div>
 
