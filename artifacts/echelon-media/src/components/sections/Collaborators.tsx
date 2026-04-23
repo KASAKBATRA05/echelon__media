@@ -97,16 +97,16 @@ export default function Collaborators() {
           </h2>
         </div>
 
-        <div ref={brandsRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div ref={brandsRef} className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3 md:gap-4">
           {LOGOS.map((src, i) => (
             <div
               key={i}
-              className="bg-[var(--offwhite)] border border-[rgba(245,166,35,0.2)] rounded-[16px] p-6 md:p-8 flex items-center justify-center hover:-translate-y-[6px] hover:shadow-[0_16px_40px_rgba(245,166,35,0.2)] hover:border-[var(--amber)] transition-all duration-300 min-h-[140px]"
+              className="bg-[var(--offwhite)] border border-[rgba(245,166,35,0.2)] rounded-[12px] p-3 flex items-center justify-center hover:-translate-y-[4px] hover:shadow-[0_10px_28px_rgba(245,166,35,0.18)] hover:border-[var(--amber)] transition-all duration-300 aspect-square"
             >
               <img
                 src={src}
                 alt={`Collaborator ${i + 1}`}
-                className="max-h-[90px] w-auto max-w-full object-contain"
+                className="max-h-[48px] w-auto max-w-full object-contain"
                 loading="lazy"
               />
             </div>
