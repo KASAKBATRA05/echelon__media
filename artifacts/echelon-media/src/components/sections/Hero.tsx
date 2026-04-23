@@ -67,11 +67,38 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
       style={{
-        background: "radial-gradient(ellipse 90% 70% at 50% 40%, var(--offwhite) 0%, var(--cream) 60%, #EFE3BE 100%)"
+        background: "radial-gradient(ellipse 80% 60% at 50% 35%, var(--offwhite) 0%, var(--cream) 55%, #F2E8C8 100%)"
       }}
     >
+      {/* Soft amber glow blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute -top-40 -left-40 w-[680px] h-[680px] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, rgba(245,166,35,0.32) 0%, transparent 65%)", filter: "blur(20px)" }}
+        />
+        <div
+          className="absolute -bottom-40 -right-40 w-[720px] h-[720px] rounded-full opacity-45"
+          style={{ background: "radial-gradient(circle, rgba(45,27,94,0.18) 0%, transparent 65%)", filter: "blur(30px)" }}
+        />
+        <div
+          className="absolute top-[55%] left-[60%] w-[420px] h-[420px] rounded-full opacity-40"
+          style={{ background: "radial-gradient(circle, rgba(245,166,35,0.25) 0%, transparent 70%)", filter: "blur(40px)" }}
+        />
+      </div>
+
+      {/* Subtle dot grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.35]"
+        style={{
+          backgroundImage: "radial-gradient(rgba(45,27,94,0.18) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+          maskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 80%)"
+        }}
+      />
+
       {/* Grain texture */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-multiply">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-multiply">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
@@ -80,192 +107,139 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Scattered floating card mockups (faded into background) */}
-      <div className="absolute inset-0 pointer-events-none z-0 opacity-70">
-        {/* TOP LEFT — Social Media tile */}
-        <div
+      {/* Decorative concentric arcs (top-right corner) */}
+      <svg
+        className="absolute -top-32 -right-32 w-[520px] h-[520px] pointer-events-none opacity-40"
+        viewBox="0 0 200 200" fill="none" stroke="var(--amber)" strokeWidth="0.6"
+      >
+        <circle cx="100" cy="100" r="90" />
+        <circle cx="100" cy="100" r="70" strokeDasharray="2 4" />
+        <circle cx="100" cy="100" r="50" />
+        <circle cx="100" cy="100" r="30" strokeDasharray="1 3" />
+      </svg>
+
+      {/* Decorative arcs bottom-left */}
+      <svg
+        className="absolute -bottom-40 -left-40 w-[560px] h-[560px] pointer-events-none opacity-30"
+        viewBox="0 0 200 200" fill="none" stroke="var(--purple)" strokeWidth="0.5"
+      >
+        <circle cx="100" cy="100" r="95" />
+        <circle cx="100" cy="100" r="75" strokeDasharray="1 3" />
+        <circle cx="100" cy="100" r="55" />
+      </svg>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Stylised phone (no photo) */}
+        <div 
           ref={phoneRef}
-          className="absolute left-[3%] top-[8%] w-[170px] rounded-[18px] overflow-hidden animate-[float_6s_ease-in-out_infinite] hidden md:block"
+          className="absolute left-[7%] top-[22%] w-[190px] h-[360px] rounded-[32px] p-[10px] animate-[float_6s_ease-in-out_infinite] hidden md:block"
           style={{
-            transform: "rotate(-7deg)",
-            boxShadow: "0 30px 60px -20px rgba(45,27,94,0.25)",
-            background: "var(--offwhite)"
+            background: "linear-gradient(145deg, var(--purple), #1a0f3d)",
+            boxShadow: "0 50px 100px -20px rgba(45,27,94,0.4), 0 0 0 1px rgba(245,166,35,0.25)"
           }}
         >
-          <div className="px-3 pt-3 pb-2 flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-[var(--amber)]" />
-            <div className="flex flex-col gap-1">
-              <div className="h-1.5 w-16 rounded-full bg-[var(--purple)] opacity-70" />
-              <div className="h-1 w-10 rounded-full bg-[var(--purple)] opacity-30" />
-            </div>
-            <div className="ml-auto px-2 py-0.5 rounded-full bg-[var(--purple)] text-[8px] font-semibold tracking-wider text-[var(--amber)]">SOCIAL</div>
-          </div>
-          <div className="h-[170px] grid grid-cols-2 gap-1 px-1">
-            <div className="rounded-md" style={{ background: "linear-gradient(135deg, var(--amber), #E8941A)" }} />
-            <div className="rounded-md bg-[var(--purple)]" />
-            <div className="rounded-md bg-[var(--purple)] opacity-80" />
-            <div className="rounded-md" style={{ background: "linear-gradient(135deg, #F5A623, #FAF3E0)" }} />
-          </div>
-          <div className="px-3 py-3 flex items-center gap-2">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--amber)"><path d="M12 21s-7-4.35-9-8.5C1 7 5 4 8 4c2 0 3 1 4 2 1-1 2-2 4-2 3 0 7 3 5 8.5C19 16.65 12 21 12 21z"/></svg>
-            <span className="text-[9px] font-semibold text-[var(--purple)]">4.2K · 318</span>
-          </div>
-        </div>
-
-        {/* MIDDLE LEFT — Brand palette card */}
-        <div
-          className="absolute left-[5%] top-[52%] w-[180px] rounded-[16px] p-3 animate-[floatCard_7s_ease-in-out_infinite] hidden md:block"
-          style={{
-            transform: "rotate(4deg)",
-            background: "var(--offwhite)",
-            boxShadow: "0 30px 60px -20px rgba(45,27,94,0.22)"
-          }}
-        >
-          <div className="px-2 py-0.5 rounded-full bg-[var(--purple)] text-[8px] font-semibold tracking-wider text-[var(--amber)] inline-block mb-3">BRAND</div>
-          <div className="font-heading font-bold text-[20px] text-[var(--purple)] leading-none mb-3">AVANT<br/>VENTURES</div>
-          <div className="grid grid-cols-4 gap-1 mb-3">
-            <div className="aspect-square rounded bg-[var(--purple)]" />
-            <div className="aspect-square rounded bg-[var(--amber)]" />
-            <div className="aspect-square rounded" style={{ background: "#EFE3BE" }} />
-            <div className="aspect-square rounded bg-[var(--cream)] border border-[var(--purple)] opacity-50" />
-          </div>
-          <div className="h-1 w-full rounded bg-[var(--purple)] opacity-15 mb-1" />
-          <div className="h-1 w-2/3 rounded bg-[var(--purple)] opacity-15 mb-2" />
-          <div className="text-[8px] font-semibold text-[var(--purple)] opacity-80">Brand Launch · Q2</div>
-        </div>
-
-        {/* TOP RIGHT — Brand Story video card */}
-        <div
-          ref={cardRef}
-          className="absolute right-[4%] top-[10%] w-[180px] rounded-[16px] overflow-hidden animate-[floatCard_5s_ease-in-out_infinite] hidden md:block"
-          style={{
-            transform: "rotate(6deg)",
-            background: "var(--offwhite)",
-            boxShadow: "0 30px 60px -20px rgba(45,27,94,0.25)"
-          }}
-        >
-          <div className="px-3 pt-3 pb-1 flex items-center justify-between">
-            <span className="text-[9px] font-semibold tracking-wider text-[var(--purple)] opacity-70">BRAND STORY</span>
-            <div className="flex gap-0.5">
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-            </div>
-          </div>
-          <div className="mx-3 h-[110px] rounded-md relative overflow-hidden" style={{ background: "linear-gradient(135deg, var(--purple) 0%, #1a0f3d 100%)" }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="font-italic-tagline text-[var(--amber)] text-[24px]">Brand Story</div>
-            </div>
-            <div className="absolute bottom-2 left-2 w-4 h-4 rounded-full bg-[var(--amber)] flex items-center justify-center">
-              <div className="w-0 h-0 border-l-[5px] border-l-[var(--purple)] border-y-[3px] border-y-transparent ml-0.5" />
-            </div>
-          </div>
-          <div className="px-3 py-2 flex items-center justify-between">
-            <span className="text-[8px] font-semibold text-[var(--purple)]">Reel · 2.1M views</span>
-            <div className="w-0 h-0 border-l-[6px] border-l-[var(--amber)] border-y-[4px] border-y-transparent" />
-          </div>
-        </div>
-
-        {/* RIGHT MIDDLE — Web design preview */}
-        <div
-          className="absolute right-[3%] top-[55%] w-[200px] rounded-[14px] p-3 animate-[float_8s_ease-in-out_infinite] hidden md:block"
-          style={{
-            transform: "rotate(-5deg)",
-            background: "var(--offwhite)",
-            boxShadow: "0 30px 60px -20px rgba(45,27,94,0.22)"
-          }}
-        >
-          <div className="px-2 py-0.5 rounded-full bg-[var(--purple)] text-[8px] font-semibold tracking-wider text-[var(--amber)] inline-block mb-2">WEB</div>
-          <div className="rounded-md overflow-hidden border border-[var(--purple)]/15">
-            <div className="h-3 bg-[var(--cream)] flex items-center gap-0.5 px-1.5">
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-              <div className="w-1 h-1 rounded-full bg-[var(--purple)] opacity-40" />
-            </div>
-            <div className="p-2" style={{ background: "linear-gradient(135deg, #FFF8EC, #FAF3E0)" }}>
-              <div className="h-2 w-12 rounded bg-[var(--purple)] mb-2" />
-              <div className="h-1 w-full rounded bg-[var(--purple)] opacity-20 mb-1" />
-              <div className="h-1 w-4/5 rounded bg-[var(--purple)] opacity-20 mb-2" />
-              <div className="grid grid-cols-3 gap-1 mb-2">
-                <div className="aspect-square rounded bg-[var(--amber)] opacity-90" />
-                <div className="aspect-square rounded bg-[var(--purple)] opacity-80" />
-                <div className="aspect-square rounded bg-[var(--purple)] opacity-30" />
+          <div className="w-full h-full rounded-[22px] overflow-hidden relative" style={{ background: "linear-gradient(160deg, #FFF8EC 0%, #FAF3E0 100%)" }}>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-[var(--purple)] rounded-b-xl" />
+            <div className="p-4 pt-7 flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 rounded-full bg-[var(--amber)]" />
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--purple)] opacity-30" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--purple)] opacity-30" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--purple)] opacity-30" />
+                </div>
               </div>
-              <div className="h-2 w-10 rounded-full bg-[var(--amber)]" />
+              <div className="h-32 rounded-xl" style={{ background: "linear-gradient(135deg, var(--amber) 0%, #E8941A 100%)" }}>
+                <div className="h-full w-full flex items-end p-3">
+                  <div className="w-full h-1 rounded-full bg-[var(--purple)] opacity-30" />
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="h-2 w-3/4 rounded-full bg-[var(--purple)] opacity-20" />
+                <div className="h-2 w-1/2 rounded-full bg-[var(--purple)] opacity-15" />
+              </div>
+              <div className="grid grid-cols-3 gap-2 mt-2">
+                <div className="aspect-square rounded-lg bg-[var(--purple)] opacity-90" />
+                <div className="aspect-square rounded-lg bg-[var(--amber)] opacity-80" />
+                <div className="aspect-square rounded-lg bg-[var(--purple)] opacity-15" />
+              </div>
             </div>
           </div>
-          <div className="text-[8px] font-semibold text-[var(--purple)] mt-2">Web Design · UX Consulting</div>
         </div>
 
-        {/* BOTTOM CENTER LEFT — Event poster */}
-        <div
-          className="absolute left-[22%] bottom-[6%] w-[150px] rounded-[14px] overflow-hidden animate-[floatCard_6s_ease-in-out_infinite] hidden lg:block"
+        {/* UI Card */}
+        <div 
+          ref={cardRef}
+          className="absolute right-[8%] top-[18%] w-[230px] rounded-[18px] backdrop-blur-[14px] border p-5 animate-[floatCard_5s_ease-in-out_infinite] hidden md:block"
           style={{
-            transform: "rotate(-4deg)",
-            background: "var(--offwhite)",
-            boxShadow: "0 25px 50px -15px rgba(45,27,94,0.22)"
+            background: "rgba(255,248,236,0.85)",
+            borderColor: "rgba(245,166,35,0.35)",
+            boxShadow: "0 30px 70px -15px rgba(45,27,94,0.25)"
           }}
         >
-          <div className="h-[110px] flex flex-col items-center justify-center text-center px-3" style={{ background: "linear-gradient(160deg, var(--purple), #1a0f3d)" }}>
-            <div className="text-[7px] tracking-[0.3em] text-[var(--amber)] mb-1">EVENT · 2026</div>
-            <div className="font-heading font-bold text-[18px] leading-none text-[var(--cream)]">UNLEASH<br/>YOUR<br/>POTENTIAL</div>
-            <div className="text-[7px] text-[var(--amber)] mt-2 opacity-80">25.07</div>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-2 h-2 rounded-full bg-[var(--amber)]" />
+            <div className="text-[9px] font-semibold tracking-[0.2em] text-[var(--purple)] opacity-70">ENGAGEMENT</div>
           </div>
-          <div className="px-3 py-2 text-[8px] font-semibold text-[var(--purple)]">Event Coverage</div>
+          <div className="text-[28px] font-heading font-bold text-[var(--purple)] leading-none mb-1">+248%</div>
+          <div className="text-[11px] text-[var(--purple)] opacity-50 mb-4">vs. last quarter</div>
+          {/* Mini bar chart */}
+          <div className="flex items-end gap-1.5 h-12">
+            {[40, 65, 30, 80, 55, 95, 70].map((h, i) => (
+              <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%`, background: i === 5 ? "var(--amber)" : "rgba(45,27,94,0.25)" }} />
+            ))}
+          </div>
+          <div className="mt-3 h-[1px] w-full bg-[var(--amber)] opacity-50" />
         </div>
 
-        {/* BOTTOM CENTER RIGHT — Wedding tile */}
+        {/* Small floating tag bottom-left of hero text */}
         <div
-          className="absolute right-[24%] bottom-[5%] w-[140px] rounded-[14px] overflow-hidden animate-[float_7s_ease-in-out_infinite] hidden lg:block"
+          className="absolute left-[12%] bottom-[18%] hidden lg:flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-md animate-[floatCard_7s_ease-in-out_infinite]"
           style={{
-            transform: "rotate(5deg)",
-            background: "var(--offwhite)",
-            boxShadow: "0 25px 50px -15px rgba(45,27,94,0.22)"
+            background: "rgba(45,27,94,0.92)",
+            boxShadow: "0 20px 40px -10px rgba(45,27,94,0.3)"
           }}
         >
-          <div className="h-[100px] relative" style={{ background: "linear-gradient(135deg, var(--amber) 0%, #E8941A 100%)" }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="font-italic-tagline text-[var(--purple)] text-[22px]">forever</div>
-            </div>
-          </div>
-          <div className="px-3 py-2 flex items-center justify-between">
-            <span className="text-[8px] font-semibold text-[var(--purple)]">Weddings</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--amber)]" />
-          </div>
+          <div className="w-1.5 h-1.5 rounded-full bg-[var(--amber)] animate-pulse" />
+          <span className="text-[10px] font-semibold tracking-[0.18em] text-[var(--cream)]">LIVE · 200+ PROJECTS</span>
         </div>
 
-        {/* SMALL — Campaign tag top-center */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 top-[6%] hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full animate-[floatCard_5s_ease-in-out_infinite]"
-          style={{
-            background: "var(--offwhite)",
-            transform: "translateX(-50%) rotate(-2deg)",
-            boxShadow: "0 15px 30px -10px rgba(45,27,94,0.2)"
-          }}
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-[var(--amber)]" />
-          <span className="text-[9px] font-semibold tracking-[0.18em] text-[var(--purple)]">LIVE · 200+ PROJECTS</span>
-        </div>
-
-        {/* Camera lens icon (kept, smaller) */}
+        {/* Camera Lens */}
         <svg 
           ref={cameraRef}
-          className="absolute left-[15%] top-[35%] w-16 h-16 text-[var(--amber)] animate-[spin_28s_linear_infinite] hidden lg:block opacity-50"
-          viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5"
+          className="absolute right-[14%] bottom-[14%] w-36 h-36 text-[var(--amber)] animate-[spin_20s_linear_infinite] hidden md:block"
+          viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.2"
         >
-          <circle cx="50" cy="50" r="44" />
-          <circle cx="50" cy="50" r="28" strokeDasharray="2 3" />
-          <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.7" />
+          <circle cx="50" cy="50" r="44" opacity="0.6" />
+          <circle cx="50" cy="50" r="32" />
+          <circle cx="50" cy="50" r="18" opacity="0.7" strokeDasharray="2 2" />
+          <circle cx="50" cy="50" r="6" fill="currentColor" opacity="0.8" />
+          <line x1="50" y1="2" x2="50" y2="14" />
+          <line x1="50" y1="86" x2="50" y2="98" />
+          <line x1="2" y1="50" x2="14" y2="50" />
+          <line x1="86" y1="50" x2="98" y2="50" />
         </svg>
-      </div>
 
-      {/* Soft white wash to fade cards behind text */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          background: "radial-gradient(ellipse 55% 50% at 50% 50%, rgba(250,243,224,0.85) 0%, rgba(250,243,224,0.45) 55%, transparent 80%)"
-        }}
-      />
+        {/* Structured golden dot constellation */}
+        {[
+          { l: 18, t: 18 }, { l: 22, t: 70 }, { l: 78, t: 65 }, { l: 84, t: 30 },
+          { l: 50, t: 12 }, { l: 30, t: 85 }, { l: 70, t: 90 }, { l: 8, t: 50 },
+          { l: 92, t: 55 }, { l: 60, t: 80 }
+        ].map((p, i) => (
+          <div 
+            key={i}
+            className="absolute w-[5px] h-[5px] bg-[var(--amber)] rounded-full animate-[pulse_3s_ease-in-out_infinite]"
+            style={{
+              left: `${p.l}%`,
+              top: `${p.t}%`,
+              opacity: 0.5,
+              animationDelay: `${(i * 0.3) % 2}s`,
+              boxShadow: "0 0 12px rgba(245,166,35,0.6)"
+            }}
+          />
+        ))}
+      </div>
 
       <div ref={textRef} className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
         <div className="font-sans font-medium text-[11px] tracking-[0.2em] text-[var(--amber)] mb-8">
