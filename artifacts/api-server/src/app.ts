@@ -5,9 +5,10 @@ import router from "./routes/index.js";
 import { logger } from "./lib/logger.js";
 
 const app = express();
+const createHttpLogger: typeof pinoHttp = pinoHttp as unknown as typeof pinoHttp;
 
 app.use(
-  pinoHttp({
+  createHttpLogger({
     logger,
     serializers: {
       req(req: { id?: string; method?: string; url?: string }) {
