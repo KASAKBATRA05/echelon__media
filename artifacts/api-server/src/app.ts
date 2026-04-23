@@ -5,7 +5,7 @@ import router from "./routes/index.js";
 import { logger } from "./lib/logger.js";
 
 const app = express();
-const createHttpLogger: typeof pinoHttp = pinoHttp as unknown as typeof pinoHttp;
+const createHttpLogger: any = pinoHttp;
 
 app.use(
   createHttpLogger({
