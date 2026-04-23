@@ -55,19 +55,6 @@ const SERVICES = {
       { name: "Dominance", price: "₹2,50,000", features: ["Unlimited Pages", "Custom Web App Logic", "Advanced 3D/GSAP", "Full E-commerce Suite", "API Integrations", "A/B Testing Setup", "Dedicated Maintenance"] },
     ]
   },
-  "weddings": {
-    title: "Wedding Diaries",
-    descriptor: "Stories that outlast every trend.",
-    heroImg: "24",
-    stat: "50+",
-    statDesc: "Love Stories",
-    desc: "Cinematic, emotional, and timeless. We capture the magic of your special day with an editorial, documentary-style approach.",
-    packages: [
-      { name: "Starter", price: "₹80,000", features: ["1 Day Coverage", "Traditional Photo/Video", "Album Included", "Teaser Video"] },
-      { name: "Growth", price: "₹1,80,000", features: ["2 Days Coverage", "Cinematic Videography", "Candid Photography", "Pre-wedding Shoot", "Premium Album", "Highlight Film"] },
-      { name: "Dominance", price: "₹3,50,000", features: ["Multi-day Destination", "Director & Full Crew", "Drone & Cranes", "Same Day Edit", "Luxury Albums", "Full Documentary Film", "Social Media Reels"] },
-    ]
-  }
 };
 
 export default function Service() {

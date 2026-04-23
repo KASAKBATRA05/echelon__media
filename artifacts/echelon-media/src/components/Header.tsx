@@ -21,8 +21,7 @@ export default function Header() {
     { id: "social-media", name: "Social Media Marketing", desc: "Content that converts. Audiences that grow." },
     { id: "events", name: "Event Coverage", desc: "Every moment. Captured forever." },
     { id: "branding", name: "Branding and Ads", desc: "Identity built to be remembered." },
-    { id: "web", name: "Website Development", desc: "Digital spaces that perform beautifully." },
-    { id: "weddings", name: "Wedding Diaries", desc: "Stories that outlast every trend." }
+    { id: "web", name: "Website Development", desc: "Digital spaces that perform beautifully." }
   ];
 
   return (

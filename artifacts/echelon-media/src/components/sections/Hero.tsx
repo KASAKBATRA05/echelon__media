@@ -98,7 +98,7 @@ export default function Hero() {
 
       <div ref={textRef} className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
         <div className="font-sans font-medium text-[11px] tracking-[0.2em] text-[var(--amber)] mb-8">
-          — MEDIA AND MARKETING COMPANY
+          MEDIA AND MARKETING COMPANY
         </div>
 
         <h1 className="font-heading font-bold text-[clamp(56px,8vw,120px)] leading-[1.1] text-[var(--purple)] mb-6">
@@ -110,7 +110,7 @@ export default function Hero() {
           <div>resonates.</div>
         </h1>
 
-        <p className="font-sans text-[16px] text-[var(--purple)] opacity-70 mb-10 max-w-lg">
+        <p className="font-sans text-[16px] text-[var(--purple)] opacity-70 mb-10 max-w-2xl whitespace-nowrap">
           If you want your audience to be your customer — you are in the right place.
         </p>
 

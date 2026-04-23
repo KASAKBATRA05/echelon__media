@@ -1,8 +1,29 @@
+import { Link, useLocation } from "wouter";
 import logoUrl from "@assets/logo.png";
 
 export default function Footer() {
+  const [location, setLocation] = useLocation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goToCareers = () => {
+    if (location !== "/") {
+      setLocation("/");
+      setTimeout(() => document.getElementById("careers")?.scrollIntoView({ behavior: "smooth" }), 120);
+    } else {
+      document.getElementById("careers")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const goToServices = () => {
+    if (location !== "/") {
+      setLocation("/");
+      setTimeout(() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }), 120);
+    } else {
+      document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -15,8 +36,8 @@ export default function Footer() {
               Let's Create Together
             </div>
             <h2 className="font-heading font-bold text-3xl md:text-5xl text-[var(--purple)] leading-tight">
-              Ready to elevate{" "}
-              <span className="font-italic-tagline text-[var(--amber)]">your brand?</span>
+              <span className="block">Ready to elevate</span>
+              <span className="block font-italic-tagline text-[var(--amber)]">your brand?</span>
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
@@ -47,14 +68,36 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {["Services", "Portfolio", "Careers", "Privacy", "Terms"].map((link) => (
-              <span
-                key={link}
-                className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
-              >
-                {link}
-              </span>
-            ))}
+            <button
+              onClick={goToServices}
+              className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
+            >
+              Services
+            </button>
+            <Link
+              href="/portfolio"
+              className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
+            >
+              Portfolio
+            </Link>
+            <button
+              onClick={goToCareers}
+              className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
+            >
+              Careers
+            </button>
+            <Link
+              href="/privacy"
+              className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="font-sans text-[12px] text-[var(--purple)] opacity-70 hover:opacity-100 hover:text-[var(--amber)] transition-colors cursor-pointer uppercase tracking-wider"
+            >
+              Terms
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">

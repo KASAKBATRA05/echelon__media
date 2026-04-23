@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Portfolio from "@/pages/Portfolio";
 import Service from "@/pages/Service";
+import Legal from "@/pages/Legal";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
@@ -26,6 +27,8 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/portfolio" component={Portfolio} />
           <Route path="/services/:id" component={Service} />
+          <Route path="/privacy">{() => <Legal kind="privacy" />}</Route>
+          <Route path="/terms">{() => <Legal kind="terms" />}</Route>
           <Route component={NotFound} />
         </Switch>
       </main>

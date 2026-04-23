@@ -4,7 +4,6 @@ export default function Marquee() {
     "Event Coverage",
     "Branding and Ads",
     "Website Development",
-    "Wedding Diaries",
     "200+ Projects",
     "The Power of Vision"
   ];

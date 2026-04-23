@@ -6,14 +6,12 @@ const ALL_PROJECTS = [
   { id: 2, name: "Aura Rebrand", category: "Branding", img: "12" },
   { id: 3, name: "Urban Threads", category: "Social Media", img: "13" },
   { id: 4, name: "Echo Platform", category: "Web", img: "14" },
-  { id: 5, name: "Summer Vows", category: "Weddings", img: "15" },
   { id: 6, name: "Tech Summit '24", category: "Event Coverage", img: "16" },
   { id: 7, name: "Lumina Skincare", category: "Branding", img: "17" },
   { id: 8, name: "Peak Fitness App", category: "Web", img: "18" },
-  { id: 9, name: "Golden Hour", category: "Weddings", img: "19" },
 ];
 
-const TABS = ["All", "Social Media", "Event Coverage", "Branding", "Web", "Weddings"];
+const TABS = ["All", "Social Media", "Event Coverage", "Branding", "Web"];
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("All");

@@ -79,21 +79,6 @@ const PROJECTS: Project[] = [
     ],
     gallery: [shot2, shot1, shot2],
   },
-  {
-    id: 5,
-    name: "Summer Vows",
-    category: "Weddings",
-    cover: shot1,
-    blurb: "A three-day wedding film, told like cinema.",
-    description:
-      "From mehendi to vidaai — a multi-day wedding documented with two cinematographers, a drone, and a quiet observer's eye. The hero film runs eight minutes; the highlight reel under one.",
-    highlights: [
-      "3-day, 6-event coverage",
-      "Cinematic hero film + 60s highlight reel",
-      "200+ retouched stills delivered in two weeks",
-    ],
-    gallery: [shot1, shot2, shot1],
-  },
 ];
 
 function ProjectModal({
