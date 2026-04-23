@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--cream);
+  --color-foreground: var(--purple);
+  --font-sans: 'Poppins', sans-serif;
+  --font-heading: 'Clash Display', sans-serif;
+  --font-italic: 'Cormorant Garamond', serif;
+}
+
+:root {
+  --cream: #FAF3E0;
+  --purple: #2D1B5E;
+  --amber: #F5A623;
+  --offwhite: #FFF8EC;
+
+  /* shadcn/ui placeholders (bypassed mostly) */
+  --background: var(--cream);
+  --foreground: var(--purple);
+  --card: var(--offwhite);
+  --card-foreground: var(--purple);
+  --border: var(--amber);
+  --primary: var(--purple);
+  --primary-foreground: var(--amber);
+  --muted: var(--offwhite);
+  --muted-foreground: var(--purple);
+}
+
+.dark {
+  --background: var(--cream);
+  --foreground: var(--purple);
+  --card: var(--offwhite);
+  --card-foreground: var(--purple);
+  --border: var(--amber);
+  --primary: var(--purple);
+  --primary-foreground: var(--amber);
+  --muted: var(--offwhite);
+  --muted-foreground: var(--purple);
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--purple);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: default; /* No custom cursor as requested */
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Display', sans-serif;
+}
+
+.font-italic-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.font-heading {
+  font-family: 'Clash Display', sans-serif;
+}
+
+/* Global scroll animations */
+.gsap-fade-rise {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.gsap-slide-left {
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.gsap-slide-right {
+  opacity: 0;
+  transform: translateX(80px);
+}
+
+.gsap-scale-reveal {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.gsap-golden-line {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Dots background drift */
+@keyframes drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-32px); }
+}
+
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(245,166,35,0.2) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.animate-drift {
+  animation: drift 8s linear infinite;
+}
