@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import gsap from "gsap";
+import logoUrl from "@assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,8 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${scrolled ? 'border-b border-[rgba(245,166,35,0.35)]' : 'border-b border-transparent'} bg-[rgba(250,243,224,0.82)] backdrop-blur-[24px]`}>
       <div className="max-w-7xl mx-auto px-6 h-[60px] md:h-[72px] flex items-center justify-between">
-        <Link href="/" className="font-heading font-bold text-2xl text-[var(--purple)] flex items-center gap-2">
-          ECHELON MEDIA
+        <Link href="/" className="flex items-center gap-2">
+          <img src={logoUrl} alt="Echelon Media" className="h-[52px] md:h-[60px] w-auto object-contain" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 relative">

@@ -119,9 +119,6 @@ export default function Hero() {
           <Link href="/portfolio" className="bg-[var(--purple)] text-[var(--amber)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center gap-2 hover:bg-[var(--amber)] hover:text-[var(--purple)] hover:-translate-y-[3px] transition-all duration-250">
             Explore Our Work <span>→</span>
           </Link>
-          <a href="#contact" className="border-2 border-[var(--purple)] text-[var(--purple)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center justify-center hover:border-[var(--amber)] hover:text-[var(--amber)] transition-colors bg-[rgba(250,243,224,0.4)] backdrop-blur-sm">
-            Let's Talk
-          </a>
         </div>
       </div>
 

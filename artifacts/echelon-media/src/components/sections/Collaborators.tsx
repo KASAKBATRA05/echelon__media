@@ -1,15 +1,35 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const BRANDS = [
-  "Skyrise Infra", "Court Culture", "United", "Taal", "Origen Systems", "Kokam", "Nexus", "Aura"
+import logo1 from "@assets/collabs/all_logos-removebg-preview.png";
+import logo2 from "@assets/collabs/all_logos__1_-removebg-preview.png";
+import logo3 from "@assets/collabs/all_logos__2_-removebg-preview.png";
+import logo4 from "@assets/collabs/all_logos__3_-removebg-preview.png";
+import logo5 from "@assets/collabs/all_logos__4_-removebg-preview.png";
+import logo6 from "@assets/collabs/all_logos__5_-removebg-preview.png";
+import logo7 from "@assets/collabs/all_logos__6_-removebg-preview.png";
+import logo8 from "@assets/collabs/all_logos__7_-removebg-preview.png";
+import logoSabherwal from "@assets/collabs/dr._sabherwal_dental.jpg-removebg-preview.png";
+import logoJitoLadies from "@assets/collabs/jito_ladies_north_delhi.jpg-removebg-preview.png";
+import logoJitoYouth from "@assets/collabs/jito_north_youth.jpg-removebg-preview.png";
+import logoJitoZone from "@assets/collabs/jito_north_zone.jpg-removebg-preview.png";
+import logoMmk from "@assets/collabs/MMk_logo-removebg-preview.png";
+import logoPentagons from "@assets/collabs/pentagons_ai.jpg-removebg-preview.png";
+import logoShopGem from "@assets/collabs/Shop_e_gem_logo_insta-removebg-preview.png";
+import logoUntitled from "@assets/collabs/Untitled design (1).png";
+
+const LOGOS = [
+  logo1, logo2, logo3, logo4,
+  logo5, logo6, logo7, logo8,
+  logoSabherwal, logoJitoLadies, logoJitoYouth, logoJitoZone,
+  logoMmk, logoPentagons, logoShopGem, logoUntitled,
 ];
 
 function scrambleText(element: HTMLElement, finalTxt: string) {
   const chars = '!<>-_\\\\/[]{}—=+*^?#________';
   let frame = 0;
-  const maxFrames = 20; // 30ms * 20 = 600ms
-  
+  const maxFrames = 20;
+
   const interval = setInterval(() => {
     let output = '';
     for (let i = 0; i < finalTxt.length; i++) {
@@ -52,10 +72,10 @@ export default function Collaborators() {
 
     if (brandsRef.current) {
       const cards = brandsRef.current.children;
-      gsap.fromTo(cards, 
+      gsap.fromTo(cards,
         { opacity: 0, y: 40 },
         {
-          opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: "power3.out",
+          opacity: 1, y: 0, stagger: 0.06, duration: 0.7, ease: "power3.out",
           scrollTrigger: {
             trigger: brandsRef.current,
             start: "top 85%"
@@ -78,12 +98,17 @@ export default function Collaborators() {
         </div>
 
         <div ref={brandsRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {BRANDS.map((brand, i) => (
-            <div 
+          {LOGOS.map((src, i) => (
+            <div
               key={i}
-              className="bg-[var(--offwhite)] border border-[rgba(245,166,35,0.2)] rounded-[16px] p-6 md:p-8 flex items-center justify-center hover:-translate-y-[6px] hover:shadow-[0_16px_40px_rgba(245,166,35,0.2)] hover:border-[var(--amber)] transition-all duration-300 min-h-[120px]"
+              className="bg-[var(--offwhite)] border border-[rgba(245,166,35,0.2)] rounded-[16px] p-6 md:p-8 flex items-center justify-center hover:-translate-y-[6px] hover:shadow-[0_16px_40px_rgba(245,166,35,0.2)] hover:border-[var(--amber)] transition-all duration-300 min-h-[140px]"
             >
-              <span className="font-heading font-semibold text-xl text-[var(--purple)] text-center">{brand}</span>
+              <img
+                src={src}
+                alt={`Collaborator ${i + 1}`}
+                className="max-h-[90px] w-auto max-w-full object-contain"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
