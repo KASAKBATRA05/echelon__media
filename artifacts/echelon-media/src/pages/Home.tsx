@@ -8,6 +8,7 @@ import Careers from "@/components/sections/Careers";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window !== "undefined" && window.location.search.includes("skipIntro")) return false;
     return !sessionStorage.getItem("echelonIntroSeen");
   });
 
