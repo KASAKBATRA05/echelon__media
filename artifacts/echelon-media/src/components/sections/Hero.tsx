@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Link } from "wouter";
 import bgLeft from "@assets/Screenshot 2026-04-23 121810.png";
 import bgRight from "@assets/Screenshot 2026-04-23 121858.png";
 
@@ -116,27 +115,14 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/portfolio" className="bg-[var(--purple)] text-[var(--amber)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center gap-2 hover:bg-[var(--amber)] hover:text-[var(--purple)] hover:-translate-y-[3px] transition-all duration-250">
+          <button
+            onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+            className="bg-[var(--purple)] text-[var(--amber)] font-sans font-semibold rounded-full px-[36px] py-[14px] flex items-center gap-2 hover:bg-[var(--amber)] hover:text-[var(--purple)] hover:-translate-y-[3px] transition-all duration-250"
+          >
             Explore Our Work <span>→</span>
-          </Link>
+          </button>
         </div>
       </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
-        <span className="font-sans text-[10px] tracking-[0.3em] text-[var(--purple)] opacity-60">SCROLL</span>
-        <div className="w-[2px] h-[40px] bg-transparent relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[var(--amber)] origin-top animate-[scrollLine_1.5s_ease-in-out_infinite]" />
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes scrollLine {
-          0% { transform: scaleY(0); transform-origin: top; }
-          50% { transform: scaleY(1); transform-origin: top; }
-          50.1% { transform: scaleY(1); transform-origin: bottom; }
-          100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-      `}</style>
     </section>
   );
 }
