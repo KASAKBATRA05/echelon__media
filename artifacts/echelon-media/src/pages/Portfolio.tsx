@@ -135,8 +135,22 @@ export default function Portfolio() {
                 <div className="font-sans text-[var(--purple)] opacity-70">240% increase in engagement.</div>
               </div>
               <div className="flex gap-4">
-                <button className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors">← Previous</button>
-                <button className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors">Next Project →</button>
+                <button
+                  onClick={() => {
+                    const idx = filteredProjects.findIndex(p => p.id === selectedProject.id);
+                    const prev = filteredProjects[(idx - 1 + filteredProjects.length) % filteredProjects.length];
+                    setSelectedProject(prev);
+                  }}
+                  className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors"
+                >← Previous</button>
+                <button
+                  onClick={() => {
+                    const idx = filteredProjects.findIndex(p => p.id === selectedProject.id);
+                    const next = filteredProjects[(idx + 1) % filteredProjects.length];
+                    setSelectedProject(next);
+                  }}
+                  className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors"
+                >Next Project →</button>
               </div>
             </div>
           </div>

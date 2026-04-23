@@ -96,79 +96,118 @@ const PROJECTS: Project[] = [
   },
 ];
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectModal({
+  project,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  project: Project;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
     document.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, onPrev, onNext]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      ".home-lightbox-content",
+      { scale: 0.96, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" },
+    );
+  }, [project.id]);
 
   return (
-    <div
-      className="fixed inset-0 z-[2000] bg-[rgba(45,27,94,0.85)] backdrop-blur-md flex items-center justify-center p-4 md:p-10 animate-[fadeIn_0.25s_ease-out]"
-      onClick={onClose}
-    >
-      <div
-        className="relative bg-[var(--cream)] rounded-[24px] max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
+    <div className="fixed inset-0 z-[900] bg-[rgba(250,243,224,0.97)] backdrop-blur-[30px] overflow-y-auto">
+      <button
+        onClick={onClose}
+        aria-label="Close"
+        className="fixed top-24 right-6 w-10 h-10 rounded-full bg-[rgba(245,166,35,0.15)] flex items-center justify-center text-[var(--amber)] hover:bg-[var(--amber)] hover:text-[var(--purple)] transition-colors z-[910]"
       >
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[var(--purple)] text-[var(--amber)] flex items-center justify-center hover:bg-[var(--amber)] hover:text-[var(--purple)] transition-colors text-xl"
-        >
-          ×
-        </button>
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
 
-        <div className="aspect-video w-full overflow-hidden rounded-t-[24px]">
-          <img src={project.cover} alt={project.name} className="w-full h-full object-cover" />
+      <div className="home-lightbox-content max-w-5xl w-full mx-auto mt-24 px-6 pb-20">
+        <div className="font-sans text-[12px] font-bold tracking-wider uppercase text-[var(--amber)] bg-[rgba(245,166,35,0.15)] px-4 py-1.5 rounded-full w-fit mb-4">
+          {project.category}
+        </div>
+        <h2 className="font-heading font-bold text-5xl md:text-7xl text-[var(--purple)] mb-4">
+          {project.name}
+        </h2>
+        <p className="font-italic-tagline text-[var(--amber)] text-2xl md:text-3xl mb-8">
+          {project.blurb}
+        </p>
+
+        <img
+          src={project.cover}
+          alt={project.name}
+          className="w-full aspect-video object-cover rounded-[16px] mb-8 shadow-2xl"
+        />
+
+        <p className="font-sans text-[16px] text-[var(--purple)] opacity-85 leading-relaxed mb-8 max-w-3xl">
+          {project.description}
+        </p>
+
+        <div className="mb-10">
+          <div className="font-sans text-[11px] tracking-[0.2em] text-[var(--amber)] uppercase mb-4">
+            What we delivered
+          </div>
+          <ul className="space-y-2">
+            {project.highlights.map((h, i) => (
+              <li key={i} className="flex items-start gap-3 font-sans text-[15px] text-[var(--purple)]">
+                <span className="text-[var(--amber)] mt-1">→</span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="p-6 md:p-10">
-          <div className="font-sans text-[11px] tracking-[0.2em] text-[var(--amber)] uppercase mb-3">
-            {project.category}
-          </div>
-          <h3 className="font-heading font-bold text-4xl md:text-5xl text-[var(--purple)] mb-3">
-            {project.name}
-          </h3>
-          <p className="font-italic-tagline text-[var(--amber)] text-xl md:text-2xl mb-6">
-            {project.blurb}
-          </p>
-          <p className="font-sans text-[15px] text-[var(--purple)] opacity-80 leading-relaxed mb-8 max-w-3xl">
-            {project.description}
-          </p>
+        <div className="grid grid-cols-3 gap-4 mb-10">
+          {project.gallery.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              className="w-full aspect-video object-cover rounded-[12px]"
+              alt={`${project.name} gallery ${i + 1}`}
+            />
+          ))}
+        </div>
 
-          <div className="mb-10">
-            <div className="font-sans text-[11px] tracking-[0.2em] text-[var(--amber)] uppercase mb-4">
-              What we delivered
-            </div>
-            <ul className="space-y-2">
-              {project.highlights.map((h, i) => (
-                <li key={i} className="flex items-start gap-3 font-sans text-[15px] text-[var(--purple)]">
-                  <span className="text-[var(--amber)] mt-1">→</span>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-[rgba(245,166,35,0.2)] pt-8">
+          <div>
+            <div className="font-sans font-bold text-[var(--purple)] text-lg">Echelon Media</div>
+            <div className="font-sans text-[var(--purple)] opacity-70">{project.blurb}</div>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {project.gallery.map((src, i) => (
-              <div key={i} className="rounded-[14px] overflow-hidden aspect-[4/5] bg-[var(--offwhite)]">
-                <img src={src} alt={`${project.name} ${i + 1}`} className="w-full h-full object-cover" />
-              </div>
-            ))}
+          <div className="flex gap-4">
+            <button
+              onClick={onPrev}
+              className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors"
+            >
+              ← Previous
+            </button>
+            <button
+              onClick={onNext}
+              className="font-sans font-semibold text-[var(--amber)] hover:text-[var(--purple)] transition-colors"
+            >
+              Next Project →
+            </button>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-      `}</style>
     </div>
   );
 }
@@ -276,7 +315,20 @@ export default function PortfolioSection() {
         </div>
       </div>
 
-      {active && <ProjectModal project={active} onClose={() => setActive(null)} />}
+      {active && (
+        <ProjectModal
+          project={active}
+          onClose={() => setActive(null)}
+          onPrev={() => {
+            const idx = PROJECTS.findIndex((p) => p.id === active.id);
+            setActive(PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length]);
+          }}
+          onNext={() => {
+            const idx = PROJECTS.findIndex((p) => p.id === active.id);
+            setActive(PROJECTS[(idx + 1) % PROJECTS.length]);
+          }}
+        />
+      )}
     </section>
   );
 }
